@@ -1,0 +1,35 @@
+!0000000000000000000000000000000000000000000000
+[                     ^
+#a
+
+>a.0:11b
+>a.1:10b
+
+>b.0:10a
+>b.1:00c
+
+>c.0:11halt
+>c.1:10d
+
+>d.0:11d
+>d.1:01a
+
+
+
+
+Find:
+^!0([01]{20})([01])([01]*\r\n\[ +\^\r\n#)(.*)\r\n(?=(.*\r\n)*^>\4\.\2:([01])((0)|1)(.*\r\n))
+
+Replace:
+!\8\8\1\6\3\9
+
+
+
+The Busy Beaver is the Turing machine that writes as many 1s as possible on the tape before halting, for a given number of instruction sets. A machine that runs forever without halting does not qualify.
+
+Above is the Busy Beaver for 4 instruction sets. It writes thirteen 1s over the course of 107 steps before halting. 
+
+The Busy Beaver for 5 instruction sets takes 47,176,870 steps to complete.
+
+
+https://en.wikipedia.org/wiki/Busy_beaver
