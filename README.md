@@ -8,14 +8,14 @@ The machine consists of the tape, the read/write head, the current instruction, 
 - The tape is a line beginning with a `!` followed by a string of `0`s and `1`s.
 - The read/write head is a line beginning with a `[` followed by a preset amount of whitespace and ending with a `^`.
 - The current instruction is a line beginning with a `#` and followed by the name of the current instruction.
-- The instruction sets are the remaining lines, formatted like `>C.I:WMN-` 
-  - `C`: current instruction name.
-  - `I`: the input from the current tape position. Either `0` or `1`. Each instruction has execution parameters for both inputs.
-  - `W`: the output to be written to the tape at the current position. Either `0` or `1`.
-  - `M`: the movement of the read/write head. A `0` moves the head one position to the left. A `1` moves it to the right.
-  - `N`: the name of the next instruction to be executed at the new tape position.
+- The instruction sets are the remaining lines, formatted like `>C.I:WMN` 
+  - `C` current instruction name.
+  - `I` the input from the current tape position. Either `0` or `1`. Each instruction has execution parameters for both inputs.
+  - `W` the output to be written to the tape at the current position. Either `0` or `1`.
+  - `M` the movement of the read/write head. A `0` moves the head one position to the left. A `1` moves it to the right.
+  - `N` the name of the next instruction to be executed at the new tape position.
 
-This is an example of a tape with one instruction set named `INST`:
+This is an example of a tape with one instruction set named `INST`
 
 ```
 !0000000000000000000001000000000000000000000000
@@ -72,15 +72,15 @@ The regular expression then uses a lookahead to read information about the curre
 Everything contained within parentheses in the regular expression is called a group. The fourth group of parentheses can be referenced later in the expression with `\4`. In this case, `\4` is the name of the current instruction set and `\2` is the value of the current tape position. The lookahead passes by every line of text until it finds the one that begins with `>\4\.\2:` which it can then parse for the necessary information to execute the current instruction.
 
 The groups are defined as follows:
-1. tape from position 2 up to current position
-2. tape at current position
-3. rest of tape, line break, all of the read/write head line, line break, `#`
-4. name of current instruction
-5. all text up until the current instruction
-6. what to write at current position
-7. where to move (`0` left, `1` right)
-8. what to modify beginning of tape with in order to move the head (explained below)
-9. next instruction name
+`1` tape from position 2 up to current position
+`2` tape at current position
+`3` rest of tape, line break, all of the read/write head line, line break, `#`
+`4` name of current instruction
+`5` all text up until the current instruction
+`6` what to write at current position
+`7` where to move (`0` left, `1` right)
+`8` what to modify beginning of tape with in order to move the head (explained below)
+`9` next instruction name
 
 These groups are used to piece together the `replace` portion of the find/replace. Most of the information remains the same, but some key elements are modified based on what the lookahead finds inside the current instruction.
 ```
