@@ -9,11 +9,11 @@ The machine consists of the tape, the read/write head, the current instruction, 
 - The read/write head is a line beginning with a `[` followed by a preset amount of whitespace and ending with a `^`.
 - The current instruction is a line beginning with a `#` and followed by the name of the current instruction.
 - The instruction sets are the remaining lines, formatted like `>C.I:WMN-` 
-- `C`: current instruction name.
-- `I`: the input from the current tape position. Either `0` or `1`. Each instruction has execution parameters for both inputs.
-- `W`: the output to be written to the tape at the current position. Either `0` or `1`.
-- `M`: the movement of the read/write head. A `0` moves the head one position to the left. A `1` moves it to the right.
-- `N`: the name of the next instruction to be executed at the new tape position.
+  - `C`: current instruction name.
+  - `I`: the input from the current tape position. Either `0` or `1`. Each instruction has execution parameters for both inputs.
+  - `W`: the output to be written to the tape at the current position. Either `0` or `1`.
+  - `M`: the movement of the read/write head. A `0` moves the head one position to the left. A `1` moves it to the right.
+  - `N`: the name of the next instruction to be executed at the new tape position.
 
 This is an example of a tape with one instruction set named `INST`:
 
