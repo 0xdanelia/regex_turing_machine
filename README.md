@@ -1,4 +1,4 @@
-I created a functioning Turing Machine using Notepad++ and its Find/Replace regular expression engine.
+I created a functioning Turing Machine using Notepad++ and its Find/Replace regular expression engine. Take a look at `busybeaver.txt` in Notepad++ or (almost) any other text editor with a regex find/replace option.
 
 
 ## What it looks like
