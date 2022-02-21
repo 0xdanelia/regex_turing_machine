@@ -73,15 +73,15 @@ The regular expression then uses a lookahead to read information about the curre
 Everything contained within parentheses in the regular expression is called a group. The fourth group of parentheses can be referenced later in the expression with `\4`. In this case, `\4` is the name of the current instruction set and `\2` is the value of the current tape position. The lookahead passes by every line of text until it finds the one that begins with `>\4\.\2:` which it can then parse for the necessary information to execute the current instruction.
 
 The groups are defined as follows:
-- `1` tape from position 2 up to current position
-- `2` tape at current position
-- `3` rest of tape, line break, all of the read/write head line, line break, `#`
-- `4` name of current instruction
-- `5` all text up until the current instruction
-- `6` what to write at current position
-- `7` where to move (`0` left, `1` right)
-- `8` what to modify beginning of tape with in order to move the head (explained below)
-- `9` next instruction name
+- `\1` tape from position 2 up to current position
+- `\2` tape at current position
+- `\3` rest of tape, line break, all of the read/write head line, line break, `#`
+- `\4` name of current instruction
+- `\5` all text up until the current instruction
+- `\6` what to write at current position
+- `\7` where to move (`0` left, `1` right)
+- `\8` what to modify beginning of tape with in order to move the head (explained below)
+- `\9` next instruction name
 
 These groups are used to piece together the `replace` portion of the find/replace. Most of the information remains the same, but some key elements are modified based on what the lookahead finds inside the current instruction.
 ```
