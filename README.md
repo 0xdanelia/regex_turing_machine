@@ -16,6 +16,12 @@ The machine consists of the tape, the read/write head, the current instruction, 
   - `M` the movement of the read/write head. A `0` moves the head one position to the left. A `1` moves it to the right.
   - `N` the name of the next instruction to be executed at the new tape position.
 
+---
+
+**Note**: For the machine to work properly, make sure to add at least one newline after your instruction set.
+
+---
+
 This is an example of a tape with one instruction set named `INST`
 
 ```
@@ -49,6 +55,13 @@ Replace with:
 ```
 !\8\8\1\6\3\9
 ```
+
+---
+
+**Note**: This regex was made for Windows machines. It has not been tested on Mac or Linux, which use `\n` instead of `\r\n` to indicate a newline.
+
+---
+
 Make sure the `Regular expression` option and the `Wrap around` box are selected.
 
 Make sure the `. matches newline` box is unselected.
