@@ -49,18 +49,13 @@ To run the machine, plug the following into the find/replace box of Notepad++:
 
 Find what:
 ```
-^!0([01]{20})([01])([01]*\r\n\[ +\^\r\n#)(.*)\r\n(?=(.*\r\n)*^>\4\.\2:([01])((0)|1)(.*\r\n))
+^!0([01]{20})([01])([01]*\r?\n\[ +\^\r?\n#)(.*)\r?\n(?=(.*\r?\n)*^>\4\.\2:([01])((0)|1)(.*\r?\n))
 ```
 Replace with:
 ```
 !\8\8\1\6\3\9
 ```
 
----
-
-**Note**: This regex was made for Windows machines. It has not been tested on Mac or Linux, which use `\n` instead of `\r\n` to indicate a newline.
-
----
 
 Make sure the `Regular expression` option and the `Wrap around` box are selected.
 
@@ -77,11 +72,11 @@ TIP: to save yourself some clicking, you can click `Replace` once and then hold 
 
 The regular expression matches on the tape, the read/write head, and the current instruction. All of these things are replaced with the contents of the find/replace box with each instruction iteration.
 ```
-^!0([01]{20})([01])([01]*\r\n\[ +\^\r\n#)(.*)\r\n
+^!0([01]{20})([01])([01]*\r?\n\[ +\^\r?\n#)(.*)\r?\n
 ```
 The regular expression then uses a lookahead to read information about the current instruction.
 ```
-(?=(.*\r\n)*^>\4\.\2:([01])((0)|1)(.*\r\n))
+(?=(.*\r?\n)*^>\4\.\2:([01])((0)|1)(.*\r?\n))
 ```
 Everything contained within parentheses in the regular expression is called a group. The fourth group of parentheses can be referenced later in the expression with `\4`. In this case, `\4` is the name of the current instruction set and `\2` is the value of the current tape position. The lookahead passes by every line of text until it finds the one that begins with `>\4\.\2:` which it can then parse for the necessary information to execute the current instruction.
 
